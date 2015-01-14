@@ -16,4 +16,5 @@ name = "maybe_utf8"
 path = "lib.rs"
 
 [dev-dependencies]
+# for doctesting only
 encoding = "0.2.18"

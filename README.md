@@ -33,6 +33,8 @@ let name = namebuf.map_into_str(|v| ISO_8859_2.decode(&*v, DecoderTrap::Replace)
 assert_eq!(name, "caf\u{e9}");
 ```
 
+[Complete Documentation][doc] is available.
+
 MaybeUTF8 is written by Kang Seonghoon and licensed under the MIT/X11 license.
 
 [doc]: https://lifthrasiir.github.io/rust-maybe_utf8/
