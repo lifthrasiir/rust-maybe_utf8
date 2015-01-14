@@ -1,0 +1,19 @@
+[package]
+name = "maybe_utf8"
+version = "0.1.0"
+authors = ["Kang Seonghoon <public+git@mearie.org>"]
+
+description = "Byte container optionally encoded as UTF-8"
+homepage = "https://github.com/lifthrasiir/rust-maybe_utf8"
+documentation = "https://lifthrasiir.github.io/rust-maybe_utf8/"
+repository = "https://github.com/lifthrasiir/rust-maybe_utf8"
+keywords = ["utf-8", "container", "string"]
+readme = "README.md"
+license = "MIT"
+
+[lib]
+name = "maybe_utf8"
+path = "lib.rs"
+
+[dev-dependencies]
+encoding = "0.2.18"
