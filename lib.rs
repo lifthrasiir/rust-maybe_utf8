@@ -4,7 +4,7 @@
 
 /*!
 
-# MaybeUTF8 0.1.0
+# MaybeUTF8 0.1.1
 
 Byte container optionally encoded as UTF-8.
 It is intended as a byte sequence type with uncertain character encoding,
@@ -219,10 +219,10 @@ impl Default for MaybeUTF8 {
     }
 }
 
-impl fmt::Show for MaybeUTF8 {
+impl fmt::Debug for MaybeUTF8 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            MaybeUTF8::UTF8(ref s) => fmt::Show::fmt(s, f),
+            MaybeUTF8::UTF8(ref s) => fmt::Debug::fmt(s, f),
             MaybeUTF8::Bytes(ref v) => {
                 try!(write!(f, "b\""));
                 for &c in v.iter() {
@@ -245,11 +245,11 @@ impl fmt::Show for MaybeUTF8 {
     }
 }
 
-impl fmt::String for MaybeUTF8 {
+impl fmt::Display for MaybeUTF8 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            MaybeUTF8::UTF8(ref s) => fmt::String::fmt(s, f),
-            MaybeUTF8::Bytes(ref v) => fmt::String::fmt(&String::from_utf8_lossy(&**v), f),
+            MaybeUTF8::UTF8(ref s) => fmt::Display::fmt(s, f),
+            MaybeUTF8::Bytes(ref v) => fmt::Display::fmt(&String::from_utf8_lossy(&**v), f),
         }
     }
 }

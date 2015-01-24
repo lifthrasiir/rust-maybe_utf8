@@ -1,5 +1,5 @@
-[MaybeUTF8][doc] 0.1.0
-========================
+[MaybeUTF8][doc] 0.1.1
+======================
 
 [![MaybeUTF8 on Travis CI][travis-image]][travis]
 
