@@ -1,6 +1,6 @@
 [package]
 name = "maybe_utf8"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Kang Seonghoon <public+git@mearie.org>"]
 
 description = "Byte container optionally encoded as UTF-8"
@@ -16,5 +16,4 @@ name = "maybe_utf8"
 path = "lib.rs"
 
 [dev-dependencies]
-# for doctesting only
-encoding = "0.2.18"
+encoding = "0.2.20" # for doctesting only

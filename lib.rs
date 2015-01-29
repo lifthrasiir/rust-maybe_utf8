@@ -4,7 +4,7 @@
 
 /*!
 
-# MaybeUTF8 0.1.1
+# MaybeUTF8 0.1.2
 
 Byte container optionally encoded as UTF-8.
 It is intended as a byte sequence type with uncertain character encoding,
@@ -40,7 +40,7 @@ fn main() {
 
 */
 
-#![allow(unstable)]
+#![feature(core, path)]
 
 use std::{str, char, fmt};
 use std::borrow::{IntoCow, Cow};
