@@ -1,4 +1,4 @@
-[MaybeUTF8][doc] 0.1.3
+[MaybeUtf8][doc] 0.2.0
 ======================
 
 [![MaybeUTF8 on Travis CI][travis-image]][travis]
@@ -18,24 +18,45 @@ The newer ZIP standard supports explicitly UTF-8-encoded file names though.
 In this case, the ZIP library may want to return either a `String` or `Vec<u8>`
 depending on the UTF-8 flag.
 
-`MaybeUTF8` type supports various conversion methods.
+This crate supports two types,
+`MaybeUtf8Buf` (analogous to `String`) and `MaybeUtf8Slice` (analogous to `&str`).
+Both types support various conversion methods.
 For example, if you know that the bytes are encoded in ISO 8859-2,
 [Encoding](https://github.com/lifthrasiir/rust-encoding/) can be used to convert them:
 
 ```rust
-extern crate encoding;
 use std::borrow::IntoCow;
 use encoding::{Encoding, DecoderTrap};
 use encoding::all::ISO_8859_2;
+use maybe_utf8::{MaybeUtf8Buf, MaybeUtf8Slice};
 
-let namebuf = MaybeUTF8::from_vec(vec![99,97,102,233]);
-let name = namebuf.map_into_str(|v| ISO_8859_2.decode(&*v, DecoderTrap::Replace).unwrap());
-assert_eq!(name, "caf\u{e9}");
+let namebuf = MaybeUtf8Buf::from_bytes(vec![99,97,102,233]);
+assert_eq!(format!("{}", namebuf), "caf\u{fffd}");
+
+// borrowed slice equally works
+{
+    let nameslice: MaybeUtf8Slice = namebuf.to_slice();
+    assert_eq!(format!("{:?}", nameslice), r#"b"caf\xe9""#);
+    assert_eq!(nameslice.map_as_cow(|v| ISO_8859_2.decode(&v, DecoderTrap::Replace).unwrap()),
+               "caf\u{e9}");
+}
+
+// consuming an optionally-UTF-8-encoded buffer also works
+assert_eq!(namebuf.map_into_str(|v| ISO_8859_2.decode(&v, DecoderTrap::Replace).unwrap()),
+           "caf\u{e9}");
+```
+
+`IntoMaybeUtf8` trait can be used to uniformly accept either string or vector
+to construct `MaybeUtf8*` values.
+
+```rust
+use maybe_utf8::IntoMaybeUtf8;
+assert_eq!("caf\u{e9}".into_maybe_utf8(), b"caf\xc3\xa9".into_maybe_utf8());
 ```
 
 [Complete Documentation][doc] is available.
 
-MaybeUTF8 is written by Kang Seonghoon and licensed under the MIT/X11 license.
+MaybeUtf8 is written by Kang Seonghoon and licensed under the MIT/X11 license.
 
 [doc]: https://lifthrasiir.github.io/rust-maybe_utf8/
 
