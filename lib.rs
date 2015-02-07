@@ -4,7 +4,7 @@
 
 /*!
 
-# MaybeUTF8 0.1.2
+# MaybeUTF8 0.1.3
 
 Byte container optionally encoded as UTF-8.
 It is intended as a byte sequence type with uncertain character encoding,
@@ -46,7 +46,7 @@ use std::{str, char, fmt};
 use std::borrow::{IntoCow, Cow};
 use std::string::CowString;
 use std::default::Default;
-use std::path::BytesContainer;
+use std::old_path::BytesContainer;
 use std::cmp::Ordering;
 use std::iter::FromIterator;
 
