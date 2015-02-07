@@ -4,7 +4,7 @@
 
 /*!
 
-# MaybeUtf8 0.2.0
+# MaybeUtf8 0.2.1
 
 Byte container optionally encoded as UTF-8.
 It is intended as a byte sequence type with uncertain character encoding,
@@ -402,8 +402,16 @@ impl IntoMaybeUtf8<MaybeUtf8Buf> for Vec<u8> {
     fn into_maybe_utf8(self) -> MaybeUtf8Buf { MaybeUtf8Buf::from_bytes(self) }
 }
 
+impl<'a> IntoMaybeUtf8<MaybeUtf8Slice<'a>> for &'a String {
+    fn into_maybe_utf8(self) -> MaybeUtf8Slice<'a> { MaybeUtf8Slice::from_str(self) }
+}
+
 impl<'a> IntoMaybeUtf8<MaybeUtf8Slice<'a>> for &'a str {
     fn into_maybe_utf8(self) -> MaybeUtf8Slice<'a> { MaybeUtf8Slice::from_str(self) }
+}
+
+impl<'a> IntoMaybeUtf8<MaybeUtf8Slice<'a>> for &'a Vec<u8> {
+    fn into_maybe_utf8(self) -> MaybeUtf8Slice<'a> { MaybeUtf8Slice::from_bytes(self) }
 }
 
 impl<'a> IntoMaybeUtf8<MaybeUtf8Slice<'a>> for &'a [u8] {
