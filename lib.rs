@@ -4,7 +4,7 @@
 
 /*!
 
-# MaybeUtf8 0.2.1
+# MaybeUtf8 0.2.2
 
 Byte container optionally encoded as UTF-8.
 It is intended as a byte sequence type with uncertain character encoding,
@@ -369,8 +369,8 @@ impl<'a> fmt::Debug for MaybeUtf8Slice<'a> {
                         b'"'  => try!(write!(f, "\\\"")),
                         b'\x20' ... b'\x7e' => try!(write!(f, "{}", c as char)),
                         _ => try!(write!(f, "\\x{}{}",
-                                         char::from_digit((c as usize) >> 4, 16).unwrap(),
-                                         char::from_digit((c as usize) & 0xf, 16).unwrap()))
+                                         char::from_digit((c as u32) >> 4, 16).unwrap(),
+                                         char::from_digit((c as u32) & 0xf, 16).unwrap()))
                     }
                 }
                 write!(f, "\"")
