@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `MaybeUtf8Slice` struct in crate `maybe_utf8`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, MaybeUtf8Slice">
+
+    <title>maybe_utf8::MaybeUtf8Slice - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>maybe_utf8</a></p><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.MaybeUtf8Buf.html' title='Byte container optionally encoded as UTF-8. It might be either...'>MaybeUtf8Buf</a><a class='struct current' href='struct.MaybeUtf8Slice.html' title='Byte slice optionally encoded as UTF-8. A borrowed version of `MaybeUtf8Buf`.'>MaybeUtf8Slice</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.IntoMaybeUtf8.html' title='A helper trait for uniformly creating `MaybeUtf8Buf` or `MaybeUtf8Slice` values.'>IntoMaybeUtf8</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>maybe_utf8</a>::<wbr><a class='struct' href=''>MaybeUtf8Slice</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-101' href='../src/maybe_utf8/lib.rs.html#88'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct MaybeUtf8Slice&lt;'a&gt; {
+    // some fields omitted
+}</pre><div class='docblock'><p>Byte slice optionally encoded as UTF-8. A borrowed version of <code>MaybeUtf8Buf</code>.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'static&gt;</code></h4>
+<div class='docblock'><p>Creates a new empty <code>MaybeUtf8Slice</code> value (which is, naturally, encoded in UTF-8).</p>
+</div><h4 id='method.from_str' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.from_str' class='fnname'>from_str</a>(s: &amp;'a <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Creates a <code>MaybeUtf8Slice</code> reference from a string slice.</p>
+</div><h4 id='method.from_bytes' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.from_bytes' class='fnname'>from_bytes</a>(v: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Creates a <code>MaybeUtf8Slice</code> reference from a <code>u8</code> slice.</p>
+</div><h4 id='method.as_bytes' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.as_bytes' class='fnname'>as_bytes</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a></code></h4>
+<div class='docblock'><p>Returns a slice of underlying bytes. It might or might not be encoded in UTF-8.</p>
+</div><h4 id='method.as_str' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.as_str' class='fnname'>as_str</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;'a <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
+<div class='docblock'><p>Returns a string slice encoded in UTF-8 if possible.
+It returns <code>None</code> if the underlying bytes are not encoded in UTF-8.</p>
+</div><h4 id='method.map_as_cow' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.map_as_cow' class='fnname'>map_as_cow</a>&lt;F, T&gt;(&amp;self, to_cow: F) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'a, <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt; <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; T, T: <a class='trait' href='http://doc.rust-lang.org/nightly/collections/borrow/trait.IntoCow.html' title='collections::borrow::IntoCow'>IntoCow</a>&lt;'a, <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</span></code></h4>
+<div class='docblock'><p>Returns a <code>Cow</code> string which represents the current <code>MaybeUtf8Slice</code>.
+It may call given <code>to_cow</code> function to get a <code>Cow</code> string out of the bytes.
+<code>to_cow</code> function itself may return a <code>String</code> or <code>&amp;str</code> compatible to <code>Cow</code> string.</p>
+</div><h4 id='method.as_cow_lossy' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.as_cow_lossy' class='fnname'>as_cow_lossy</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'a, <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
+<div class='docblock'><p>Returns a <code>Cow</code> string which represents the current <code>MaybeUtf8Slice</code>.
+Any invalid UTF-8 sequences are replaced by U+FFFD, as like <code>String::from_utf8_lossy</code>.</p>
+</div><h4 id='method.to_owned' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.to_owned' class='fnname'>to_owned</a>(&amp;self) -&gt; <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Buf.html' title='maybe_utf8::MaybeUtf8Buf'>MaybeUtf8Buf</a></code></h4>
+<div class='docblock'><p>Returns a new <code>MaybeUtf8Buf</code> from the current <code>MaybeUtf8Slice</code>.</p>
+</div><h4 id='method.len' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.len' class='fnname'>len</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code></h4>
+<div class='docblock'><p>Returns a byte length of the <code>MaybeUtf8Slice</code> value.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Buf.html' title='maybe_utf8::MaybeUtf8Buf'>MaybeUtf8Buf</a>&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, other: &amp;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Buf.html' title='maybe_utf8::MaybeUtf8Buf'>MaybeUtf8Buf</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a>&lt;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Buf.html' title='maybe_utf8::MaybeUtf8Buf'>MaybeUtf8Buf</a>&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.partial_cmp' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.partial_cmp' class='fnname'>partial_cmp</a>(&amp;self, other: &amp;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Buf.html' title='maybe_utf8::MaybeUtf8Buf'>MaybeUtf8Buf</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>&gt;</code></h4>
+<h4 id='method.lt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.lt' class='fnname'>lt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.le' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.le' class='fnname'>le</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.gt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.gt' class='fnname'>gt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ge' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ge' class='fnname'>ge</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'b&gt;&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, other: &amp;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'b&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a>&lt;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'b&gt;&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.partial_cmp' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.partial_cmp' class='fnname'>partial_cmp</a>(&amp;self, other: &amp;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'b&gt;) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>&gt;</code></h4>
+<h4 id='method.lt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.lt' class='fnname'>lt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.le' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.le' class='fnname'>le</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.gt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.gt' class='fnname'>gt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ge' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ge' class='fnname'>ge</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;&amp;'b <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, other: &amp;&amp;'b <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a>&lt;&amp;'b <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.partial_cmp' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.partial_cmp' class='fnname'>partial_cmp</a>(&amp;self, other: &amp;&amp;'b <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>&gt;</code></h4>
+<h4 id='method.lt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.lt' class='fnname'>lt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.le' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.le' class='fnname'>le</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.gt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.gt' class='fnname'>gt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ge' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ge' class='fnname'>ge</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'b [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, other: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'b [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a, 'b&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'b [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>&gt; for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.partial_cmp' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.partial_cmp' class='fnname'>partial_cmp</a>(&amp;self, other: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'b [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>&gt;</code></h4>
+<h4 id='method.lt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.lt' class='fnname'>lt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.le' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.le' class='fnname'>le</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.gt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.gt' class='fnname'>gt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ge' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.ge' class='fnname'>ge</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.assert_receiver_is_total_eq' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.assert_receiver_is_total_eq' class='fnname'>assert_receiver_is_total_eq</a>(&amp;self)</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a> for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.cmp' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.cmp' class='fnname'>cmp</a>(&amp;self, other: &amp;<a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.default' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.default' class='fnname'>default</a>() -&gt; <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='struct' href='../maybe_utf8/struct.MaybeUtf8Slice.html' title='maybe_utf8::MaybeUtf8Slice'>MaybeUtf8Slice</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "maybe_utf8";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
