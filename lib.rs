@@ -4,7 +4,7 @@
 
 /*!
 
-# MaybeUtf8 0.2.2
+# MaybeUtf8 0.2.3
 
 Byte container optionally encoded as UTF-8.
 It is intended as a byte sequence type with uncertain character encoding,
@@ -64,10 +64,9 @@ assert_eq!("caf\u{e9}".into_maybe_utf8(), b"caf\xc3\xa9".into_maybe_utf8());
 
 use std::{str, char, fmt};
 use std::borrow::{IntoCow, Cow, ToOwned};
-use std::string::CowString;
 use std::default::Default;
 use std::cmp::Ordering;
-use std::iter::FromIterator;
+use std::iter::{IntoIterator, FromIterator};
 
 /// Byte container optionally encoded as UTF-8. It might be either...
 ///
@@ -117,7 +116,7 @@ impl MaybeUtf8Buf {
     pub fn as_bytes<'a>(&'a self) -> &'a [u8] {
         match self.inner {
             Buf::Utf8(ref s) => s.as_bytes(),
-            Buf::Bytes(ref v) => &v[],
+            Buf::Bytes(ref v) => &v,
         }
     }
 
@@ -125,27 +124,27 @@ impl MaybeUtf8Buf {
     /// It returns `None` if the underlying bytes are not encoded in UTF-8.
     pub fn as_str<'a>(&'a self) -> Option<&'a str> {
         match self.inner {
-            Buf::Utf8(ref s) => Some(&s[]),
+            Buf::Utf8(ref s) => Some(&s),
             Buf::Bytes(ref v) => str::from_utf8(&v).ok(),
         }
     }
 
-    /// Returns a `CowString` which represents the current `MaybeUtf8Slice`.
-    /// It may call given `to_cow` function to get a `CowString` out of the bytes.
-    /// `to_cow` function itself may return a `String` or `&str` compatible to `CowString`.
-    pub fn map_as_cow<'a, F, T>(&'a self, mut to_cow: F) -> CowString<'a>
-            where F: FnMut(&'a [u8]) -> T, T: IntoCow<'a, String, str> {
+    /// Returns a `Cow` string which represents the current `MaybeUtf8Slice`.
+    /// It may call given `to_cow` function to get a `Cow` string out of the bytes.
+    /// `to_cow` function itself may return a `String` or `&str` compatible to `Cow` string.
+    pub fn map_as_cow<'a, F, T>(&'a self, mut to_cow: F) -> Cow<'a, str>
+            where F: FnMut(&'a [u8]) -> T, T: IntoCow<'a, str> {
         match self.inner {
-            Buf::Utf8(ref s) => s[].into_cow(),
+            Buf::Utf8(ref s) => s[..].into_cow(),
             Buf::Bytes(ref v) => to_cow(&v).into_cow(),
         }
     }
 
-    // there is no `as_cow`; if we can convert bytes to a str, we don't need `CowString` at all.
+    // there is no `as_cow`; if we can convert bytes to a str, we don't need `Cow` string at all.
 
-    /// Returns a `CowString` which represents the current `MaybeUtf8Slice`.
+    /// Returns a `Cow` string which represents the current `MaybeUtf8Slice`.
     /// Any invalid UTF-8 sequences are replaced by U+FFFD, as like `String::from_utf8_lossy`.
-    pub fn as_cow_lossy<'a>(&'a self) -> CowString<'a> {
+    pub fn as_cow_lossy<'a>(&'a self) -> Cow<'a, str> {
         self.map_as_cow(String::from_utf8_lossy)
     }
 
@@ -242,23 +241,23 @@ impl<'a> MaybeUtf8Slice<'a> {
         }
     }
 
-    /// Returns a `CowString` which represents the current `MaybeUtf8Slice`.
-    /// It may call given `to_cow` function to get a `CowString` out of the bytes.
-    /// `to_cow` function itself may return a `String` or `&str` compatible to `CowString`.
-    pub fn map_as_cow<F, T>(&self, mut to_cow: F) -> CowString<'a>
-            where F: FnMut(&'a [u8]) -> T, T: IntoCow<'a, String, str> {
+    /// Returns a `Cow` string which represents the current `MaybeUtf8Slice`.
+    /// It may call given `to_cow` function to get a `Cow` string out of the bytes.
+    /// `to_cow` function itself may return a `String` or `&str` compatible to `Cow` string.
+    pub fn map_as_cow<F, T>(&self, mut to_cow: F) -> Cow<'a, str>
+            where F: FnMut(&'a [u8]) -> T, T: IntoCow<'a, str> {
         match self.inner {
-            Slice::Utf8(s) => s[].into_cow(),
+            Slice::Utf8(s) => s.into_cow(),
             Slice::Bytes(v) => to_cow(&v).into_cow(),
         }
     }
 
 
-    // there is no `as_cow`; if we can convert bytes to a str, we don't need `CowString` at all.
+    // there is no `as_cow`; if we can convert bytes to a str, we don't need `Cow` string at all.
 
-    /// Returns a `CowString` which represents the current `MaybeUtf8Slice`.
+    /// Returns a `Cow` string which represents the current `MaybeUtf8Slice`.
     /// Any invalid UTF-8 sequences are replaced by U+FFFD, as like `String::from_utf8_lossy`.
-    pub fn as_cow_lossy(&self) -> CowString<'a> {
+    pub fn as_cow_lossy(&self) -> Cow<'a, str> {
         self.map_as_cow(String::from_utf8_lossy)
     }
 
@@ -322,13 +321,13 @@ impl<'a> Ord for MaybeUtf8Slice<'a> {
 }
 
 impl FromIterator<char> for MaybeUtf8Buf {
-    fn from_iter<I: Iterator<Item=char>>(iterator: I) -> MaybeUtf8Buf {
+    fn from_iter<I: IntoIterator<Item=char>>(iterator: I) -> MaybeUtf8Buf {
         MaybeUtf8Buf::from_str(FromIterator::from_iter(iterator))
     }
 }
 
 impl FromIterator<u8> for MaybeUtf8Buf {
-    fn from_iter<I: Iterator<Item=u8>>(iterator: I) -> MaybeUtf8Buf {
+    fn from_iter<I: IntoIterator<Item=u8>>(iterator: I) -> MaybeUtf8Buf {
         MaybeUtf8Buf::from_bytes(FromIterator::from_iter(iterator))
     }
 }

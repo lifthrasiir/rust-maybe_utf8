@@ -1,4 +1,4 @@
-[MaybeUtf8][doc] 0.2.2
+[MaybeUtf8][doc] 0.2.3
 ======================
 
 [![MaybeUTF8 on Travis CI][travis-image]][travis]
